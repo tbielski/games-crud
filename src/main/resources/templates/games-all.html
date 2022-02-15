@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en"
+      xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>All Games</title>
+</head>
+
+<body>
+<h2>All Games</h2>
+
+<a th:href="@{/developers}">Go to all developers</a>
+<a th:href="@{/platforms}">Go to all platforms</a>
+<br>
+
+<a th:href="@{/gameAddForm}">Add new game</a>
+
+<div th:each="game : ${allGames}">
+
+    <a th:href="@{/deleteGame/{id}(id=${game.getId()})}">Delete</a>
+    <a th:href="@{/editGame/{id}(id=${game.getId()})}">Edit</a>
+
+    <div th:text="'Id: ' + ${game.getId()}"></div>
+    <div th:text="'Name: ' + ${game.getName()}"></div>
+    <div th:text="'Type: ' + ${game.getType()}"></div>
+    <div th:text="'ReleaseYear: ' + ${game.getReleaseYear()}"></div>
+    <div th:text="'Rating: ' + ${game.getRating()}"></div>
+    <div th:text="'Developer name: ' + ${game.getDeveloperName()}"></div>
+
+    <a th:href="@{/addPlatform/{id}(id=${game.getId()})}">Add new platform</a>
+    <div th:each="platform : ${game.getPlatforms()}">
+        <a th:href="@{/deletePlatform/{idGame}/{idPlatform}(idGame=${game.getId()}, idPlatform=${platform.getId()})}">Delete</a>
+        <div th:text="'Platform name: ' + ${platform.getShortcut()}"></div>
+    </div>
+
+    <div th:text="'Time spent in game: ' + ${game.getGameTime()}"></div>
+    <div th:text="'Number of achievements to earn: ' + ${game.getAchievementsToEarn()}"></div>
+    <div th:text="'Number of achievements earned: ' + ${game.getAchievementsEarned()}"></div>
+
+</div>
+</body>
+</html>

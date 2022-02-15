@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en"
+      xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Add platform to game form</title>
+    <link rel="stylesheet" th:href="@{/styles.css}" />
+</head>
+
+<body>
+<h1>Add platform to game form</h1>
+
+<form method="POST" th:action="@{/addPlatform}" th:object="${addPlatformToGame}">
+
+    <input type="hidden" th:attr="name='id'" th:value="${addPlatformToGame.getId()}" />
+    <div th:if="${#fields.hasErrors()}">
+          <span class="validationError">
+             Please correct the issues below and resubmit the form
+          </span>
+    </div>
+
+    <label for="platformId">Platform id:</label>
+    <input id="platformId" type="number" th:field="*{platformId}"/>
+    <span class="validationError"
+          th:if="${#fields.hasErrors('platformId')}"
+          th:errors="*{platformId}">Platform id Error
+        </span>
+    <br/>
+
+    <input type="submit" value="Submit"/>
+
+</form>
+</body>
+</html>

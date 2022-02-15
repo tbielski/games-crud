@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en"
+      xmlns:th="http://www.thymeleaf.org" xmlns="http://www.w3.org/1999/html">
+<head>
+    <meta charset="UTF-8">
+    <title>All Developers</title>
+</head>
+
+<body>
+<h2>All Developers</h2>
+
+<a th:href="@{/games}">Go to all games</a>
+<a th:href="@{/platforms}">Go to all platforms</a>
+<br>
+
+<a th:href="@{/developerAddForm}">Add new developer</a>
+
+<div th:each="developer : ${allDevelopers}">
+
+    <a th:href="@{/deleteDeveloper/{id}(id=${developer.getId()})}">Delete</a>
+    <a th:href="@{/editDeveloper/{id}(id=${developer.getId()})}">Edit</a>
+
+    <div th:text="'Id: ' + ${developer.getId()}"></div>
+    <div th:text="'Name: ' + ${developer.getName()}"></div>
+    <div th:text="'Publisher: ' + ${developer.getPublisher()}"></div>
+    <div th:text="'CreationYear: ' + ${developer.getCreationYear()}"></div>
+    <div th:text="'Nationality: ' + ${developer.getNationality()}"></div>
+    <div th:each="game : ${developer.getGames()}">
+        <div th:text="'Game name: ' + ${game.getName()}"></div>
+    </div>
+
+</div>
+</body>
+</html>

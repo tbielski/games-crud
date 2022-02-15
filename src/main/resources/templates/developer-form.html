@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en"
+      xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Add new developer form</title>
+    <link rel="stylesheet" th:href="@{/styles.css}" />
+</head>
+
+<body>
+<h1>Add new developer form</h1>
+
+<form method="POST" th:action="@{/developerAddForm}" th:object="${developer}">
+    <div th:if="${#fields.hasErrors()}">
+          <span class="validationError">
+             Please correct the issues below and resubmit the form
+          </span>
+    </div>
+
+    <label for="name">Name:</label>
+    <input id="name" type="text" th:field="*{name}"/>
+    <span class="validationError"
+          th:if="${#fields.hasErrors('name')}"
+          th:errors="*{name}">Name Error
+        </span>
+    <br/>
+
+    <label for="publisher">Publisher:</label>
+    <input id="publisher" type="text" th:field="*{publisher}"/>
+    <span class="validationError"
+          th:if="${#fields.hasErrors('publisher')}"
+          th:errors="*{publisher}">Publisher Error
+        </span>
+    <br/>
+
+    <label for="creationYear">Creation Year:</label>
+    <input id="creationYear" type="number" th:field="*{creationYear}"/>
+    <span class="validationError"
+          th:if="${#fields.hasErrors('creationYear')}"
+          th:errors="*{creationYear}">Creation Year Error
+        </span>
+    <br/>
+
+    <label for="nationality">Nationality:</label>
+    <input id="nationality" type="text" th:field="*{nationality}"/>
+    <span class="validationError"
+          th:if="${#fields.hasErrors('nationality')}"
+          th:errors="*{nationality}">Nationality Error
+        </span>
+    <br/>
+
+    <input type="submit" value="Submit"/>
+
+</form>
+</body>
+</html>

@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en"
+      xmlns:th="http://www.thymeleaf.org" xmlns="http://www.w3.org/1999/html">
+<head>
+    <meta charset="UTF-8">
+    <title>All Platforms</title>
+</head>
+
+<body>
+<h2>All Platforms</h2>
+
+<a th:href="@{/games}">Go to all games</a>
+<a th:href="@{/developers}">Go to all developers</a>
+<br>
+
+<a th:href="@{/platformAddForm}">Add new platform</a>
+
+<div th:each="platform : ${allPlatforms}">
+
+    <a th:href="@{/deletePlatform/{id}(id=${platform.getId()})}">Delete</a>
+    <a th:href="@{/editPlatform/{id}(id=${platform.getId()})}">Edit</a>
+
+    <div th:text="'Id: ' + ${platform.getId()}"></div>
+    <div th:text="'Shortcut: ' + ${platform.getShortcut()}"></div>
+    <div th:text="'FullName: ' + ${platform.getFullName()}"></div>
+    <div th:text="'Type: ' + ${platform.getType()}"></div>
+    <div th:text="'Producer: ' + ${platform.getProducer()}"></div>
+    <div th:text="'ReleaseYear: ' + ${platform.getReleaseYear()}"></div>
+    <div th:each="game : ${platform.getPlatformGames()}">
+        <div th:text="'Game name: ' + ${game.getName()}"></div>
+    </div>
+
+</div>
+</body>
+</html>

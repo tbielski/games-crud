@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en"
+      xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Edit game form</title>
+    <link rel="stylesheet" th:href="@{/styles.css}" />
+</head>
+
+<body>
+<h1>Edit game form</h1>
+
+<form method="POST" th:action="@{/editGame}" th:object="${dtoEditGame}">
+
+    <input type="hidden" th:attr="name='id'" th:value="${dtoEditGame.getId()}" />
+    <div th:if="${#fields.hasErrors()}">
+          <span class="validationError">
+             Please correct the issues below and resubmit the form
+          </span>
+    </div>
+
+    <label for="name">Name:</label>
+    <input id="name" type="text" th:field="*{name}"/>
+    <span class="validationError"
+          th:if="${#fields.hasErrors('name')}"
+          th:errors="*{name}">Name Error
+        </span>
+    <br/>
+
+    <label for="type">Type:</label>
+    <input id="type" type="text" th:field="*{type}"/>
+    <span class="validationError"
+          th:if="${#fields.hasErrors('type')}"
+          th:errors="*{type}">Type Error
+        </span>
+    <br/>
+
+    <label for="releaseYear">Release Year:</label>
+    <input id="releaseYear" type="number" th:field="*{releaseYear}"/>
+    <span class="validationError"
+          th:if="${#fields.hasErrors('releaseYear')}"
+          th:errors="*{releaseYear}">Release Year Error
+        </span>
+    <br/>
+
+    <label for="rating">Rating:</label>
+    <input id="rating" type="number" th:field="*{rating}"/>
+    <span class="validationError"
+          th:if="${#fields.hasErrors('rating')}"
+          th:errors="*{rating}">Rating Error
+        </span>
+    <br/>
+
+    <label for="developerId">Developer id:</label>
+    <input id="developerId" type="number" th:field="*{developerId}"/>
+    <span class="validationError"
+          th:if="${#fields.hasErrors('developerId')}"
+          th:errors="*{developerId}">Developer id Error
+        </span>
+    <br/>
+
+    <label for="gameTime">Time spent in game:</label>
+    <input id="gameTime" type="number" th:field="*{gameTime}"/>
+    <span class="validationError"
+          th:if="${#fields.hasErrors('gameTime')}"
+          th:errors="*{gameTime}">Time spent in game Error
+        </span>
+    <br/>
+
+    <label for="achievementsEarned">Number of achievements earned:</label>
+    <input id="achievementsEarned" type="number" th:field="*{achievementsEarned}"/>
+    <span class="validationError"
+          th:if="${#fields.hasErrors('achievementsEarned')}"
+          th:errors="*{achievementsEarned}">Number of achievements earned Error
+        </span>
+    <br/>
+
+    <input type="submit" value="Submit"/>
+
+</form>
+</body>
+</html>

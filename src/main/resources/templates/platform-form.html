@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en"
+      xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Add new platform form</title>
+    <link rel="stylesheet" th:href="@{/styles.css}" />
+</head>
+
+<body>
+<h1>Add new platform form</h1>
+
+<form method="POST" th:action="@{/platformAddForm}" th:object="${platform}">
+    <div th:if="${#fields.hasErrors()}">
+          <span class="validationError">
+             Please correct the issues below and resubmit the form
+          </span>
+    </div>
+
+    <label for="shortcut">Shortcut:</label>
+    <input id="shortcut" type="text" th:field="*{shortcut}"/>
+    <span class="validationError"
+          th:if="${#fields.hasErrors('shortcut')}"
+          th:errors="*{shortcut}">Shortcut Error
+        </span>
+    <br/>
+
+    <label for="fullName">Full Name:</label>
+    <input id="fullName" type="text" th:field="*{fullName}"/>
+    <span class="validationError"
+          th:if="${#fields.hasErrors('fullName')}"
+          th:errors="*{fullName}">Full Name Error
+        </span>
+    <br/>
+
+    <label for="type">Type:</label>
+    <input id="type" type="text" th:field="*{type}"/>
+    <span class="validationError"
+          th:if="${#fields.hasErrors('type')}"
+          th:errors="*{type}">Type Error
+        </span>
+    <br/>
+
+    <label for="producer">Producer:</label>
+    <input id="producer" type="text" th:field="*{producer}"/>
+    <span class="validationError"
+          th:if="${#fields.hasErrors('producer')}"
+          th:errors="*{producer}">Producer Error
+        </span>
+    <br/>
+
+    <label for="releaseYear">Release Year:</label>
+    <input id="releaseYear" type="number" th:field="*{releaseYear}"/>
+    <span class="validationError"
+          th:if="${#fields.hasErrors('releaseYear')}"
+          th:errors="*{releaseYear}">Release Year Error
+        </span>
+    <br/>
+
+    <input type="submit" value="Submit"/>
+
+</form>
+</body>
+</html>
